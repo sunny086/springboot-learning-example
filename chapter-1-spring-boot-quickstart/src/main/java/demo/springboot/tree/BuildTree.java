@@ -35,7 +35,7 @@ public class BuildTree {
     private static String generateJson(Tree node) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            return objectMapper.writeValueAsString(node);
+            return objectMapper.writeValueAsString(node.getChildren());
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -43,53 +43,12 @@ public class BuildTree {
     }
 
     private static void mockData(List<ViewTree> views) {
-        ViewTree value1 = new ViewTree();
-        value1.setId("1");
-        value1.setParentId(null);
-        value1.setName("1");
-        views.add(value1);
-
-        ViewTree value2 = new ViewTree();
-        value2.setId("2");
-        value2.setParentId(null);
-        value2.setName("1");
-        views.add(value2);
-
-        ViewTree value3 = new ViewTree();
-        value3.setId("3");
-        value3.setParentId(null);
-        value3.setName("1");
-        views.add(value3);
-
-        ViewTree value4 = new ViewTree();
-        value4.setId("4");
-        value4.setParentId(null);
-        value4.setName("1");
-        views.add(value4);
-
-        ViewTree value5 = new ViewTree();
-        value5.setId("5");
-        value5.setParentId(value1.getId());
-        value5.setName("1");
-        views.add(value5);
-
-        ViewTree value6 = new ViewTree();
-        value6.setId("6");
-        value6.setParentId(value1.getId());
-        value6.setName("1");
-        views.add(value6);
-
-        ViewTree value7 = new ViewTree();
-        value7.setId("7");
-        value7.setName("1");
-        value7.setParentId(value5.getId());
-        views.add(value7);
-
-        ViewTree value8 = new ViewTree();
-        value8.setId("8");
-        value8.setName("1");
-        value8.setParentId(value4.getId());
-        views.add(value8);
+        ViewTree.ViewTreeBuilder builder = ViewTree.builder();
+        String[] ids = {null, null, null, "1", "1", "3", "4"};
+        for (int i = 0; i < 7; i++) {
+            ViewTree value = builder.id(String.valueOf(i+1)).parentId(ids[i]).name(String.valueOf(i+1)).build();
+            views.add(value);
+        }
     }
 
     private static void buildTree(List<Tree> dataList, Tree node) {
