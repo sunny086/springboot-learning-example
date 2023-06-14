@@ -1,5 +1,6 @@
-package demo.springboot.tree;
+package demo.springboot.tree_v2;
 
+import demo.springboot.tree_v1.TreeMethod;
 import lombok.Data;
 
 import java.util.List;

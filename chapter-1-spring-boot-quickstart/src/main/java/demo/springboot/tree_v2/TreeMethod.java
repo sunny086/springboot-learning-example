@@ -1,4 +1,4 @@
-package demo.springboot.tree;
+package demo.springboot.tree_v2;
 
 /**
  * Created with IntelliJ IDEA.
