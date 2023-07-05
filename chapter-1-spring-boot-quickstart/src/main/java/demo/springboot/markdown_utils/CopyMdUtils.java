@@ -1,4 +1,4 @@
-package demo.springboot.copy_markdown_assert;
+package demo.springboot.markdown_utils;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -26,7 +26,7 @@ public class CopyMdUtils {
             String content = new String(Files.readAllBytes(Paths.get(targetFilePath)));
 
             // 使用正则表达式匹配图片名称
-            Pattern pattern = Pattern.compile("\\(assert/([^\\)]+)\\)");
+            Pattern pattern = Pattern.compile("assert/[^)\"]+");
             Matcher matcher = pattern.matcher(content);
 
             // 遍历匹配到的图片名称
